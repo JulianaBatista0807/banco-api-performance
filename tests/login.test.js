@@ -2,7 +2,7 @@ import http from 'k6/http'
 import { sleep, check} from 'k6'
 
 export const options = {
-    iterations: 1,
+    iterations: 10,
 }
 
 export default function () {
@@ -23,11 +23,9 @@ export default function () {
 
   check(res, {
     'Validar que o Status é 200': (r) => r.status === 200,
-    'Validar que o Token é string': (r) => typeof(r.json().token) === 'string'
+    'Validar que o Token é string': (r) => typeof(r.json().token) == 'string'
   })
 
 sleep(1)
-  
-
 
 } 
